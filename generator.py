@@ -38,7 +38,8 @@ for filename in os.listdir(STEP_DIR):
     root, _ = os.path.splitext(filename)
     fullpath = os.path.join(STEP_DIR, filename)
     build_file = os.path.join(BUILD_DIR, "%s.html" % root)
-    data = yaml.load(open(fullpath, encoding='utf8'))
+    with open(fullpath, 'r') as stream:
+        data = yaml.safe_load(stream)
 
     if data:
         # picking the intro data and make a markdown transform
